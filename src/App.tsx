@@ -14,8 +14,8 @@ export type Produto = {
   nome: string
   preco: number
   imagem: string
-  find(arg0: (produto: Produto) => boolean): Produto | null
-  filter(arg0: (produto: Produto) => boolean): Produto[]
+  find(arg0: (favoritosType: any) => boolean): unknown
+  filter(arg0: (p: any) => boolean): unknown
 }
 
 function App() {

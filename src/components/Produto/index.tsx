@@ -3,6 +3,7 @@ import { Produto as ProdutoType } from '../../App'
 import * as S from './styles'
 import { useState } from 'react'
 import { favoritar } from '../../store/reducers/favoritos'
+import { adicionarAoCarrinho } from '../../store/reducers/carrinho'
 
 type PropsFav = {
   produto: ProdutoType
@@ -38,7 +39,10 @@ const ProdutoComponent = ({ produto }: PropsFav) => {
           ? '- Remover dos favoritos'
           : '+ Adicionar aos favoritos'}
       </S.BtnComprar>
-      <S.BtnComprar onClick={() => dispatch(favoritar(produto))} type="button">
+      <S.BtnComprar
+        onClick={() => dispatch(adicionarAoCarrinho(produto))}
+        type="button"
+      >
         Adicionar ao carrinho
       </S.BtnComprar>
     </S.Produto>
