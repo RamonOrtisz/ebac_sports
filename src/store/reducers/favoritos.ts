@@ -15,16 +15,14 @@ const favoritoSlice = createSlice({
   initialState,
   reducers: {
     favoritar: (state, action: PayloadAction<Produto>) => {
-      const produto = action.payload
+      const favoritos = action.payload
 
-      const produtoExistenteIndex = state.itens.findIndex(
-        (p) => p.id === produto.id
-      )
-
-      if (produtoExistenteIndex !== -1) {
-        state.itens.splice(produtoExistenteIndex, 1)
+      if (state.itens.find((produto) => produto.id === favoritos.id)) {
+        state.itens = state.itens.filter(
+          (produto) => produto.id !== favoritos.id
+        )
       } else {
-        state.itens.push(produto)
+        state.itens.push(favoritos)
       }
     }
   }
@@ -32,12 +30,3 @@ const favoritoSlice = createSlice({
 
 export const { favoritar } = favoritoSlice.actions
 export default favoritoSlice.reducer
-
-// function favoritar(produto: Produto) {
-//   if (favoritos.find((p) => p.id === produto.id)) {
-//     const favoritosSemProduto = favoritos.filter((p) => p.id !== produto.id)
-//     setFavoritos(favoritosSemProduto)
-//   } else {
-//     setFavoritos([...favoritos, produto])
-//   }
-// }
